@@ -6,8 +6,10 @@ const { PrismaPg } = require('@prisma/adapter-pg');
 const { PrismaClient } = require('@prisma/client');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+// 全許可にするか、Vercelのドメインを指定
+app.use(cors({
+  origin: '*', // または 'https://your-frontend.vercel.app'
+}));app.use(express.json());
 
 // 1. PostgreSQL 接続プールの作成
 const connectionString = process.env.DATABASE_URL;
